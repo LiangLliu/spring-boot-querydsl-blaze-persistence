@@ -26,11 +26,6 @@ public class UserDslController {
         return userService.dslPageUsers(pageable);
     }
 
-    @GetMapping("/v2")
-    public Page<User> pageUsersV2(@PageableDefault(size = QueryConstants.DEFAULT_PAGE_SIZE) Pageable pageable) {
-        return userService.dslPageUsers2(pageable);
-    }
-
     @GetMapping("/pojos")
     public Page<UserPojo> pageUserPojos(@PageableDefault(size = QueryConstants.DEFAULT_PAGE_SIZE) Pageable pageable) {
         return userService.pageUserPojos(pageable);

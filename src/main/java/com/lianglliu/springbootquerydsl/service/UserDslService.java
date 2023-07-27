@@ -24,10 +24,6 @@ public class UserDslService {
         return userDslRepository.findAllUser(pageable);
     }
 
-    public Page<User> dslPageUsers2(Pageable pageable) {
-        return userDslRepository.findAllUser2(pageable);
-    }
-
     public Page<UserPojo> pageUserPojos(Pageable pageable) {
         return userDslRepository.pageUserPojos(pageable);
     }

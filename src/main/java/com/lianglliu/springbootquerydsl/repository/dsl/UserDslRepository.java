@@ -1,6 +1,5 @@
 package com.lianglliu.springbootquerydsl.repository.dsl;
 
-import com.blazebit.persistence.CriteriaBuilderFactory;
 import com.lianglliu.springbootquerydsl.models.QRole;
 import com.lianglliu.springbootquerydsl.models.User;
 import com.lianglliu.springbootquerydsl.models.pojo.UserPojo;
@@ -21,27 +20,13 @@ import static com.lianglliu.springbootquerydsl.models.QUser.user;
 import static com.lianglliu.springbootquerydsl.models.QUserRole.userRole;
 
 @Repository
-public class UserDslRepository extends BlazeQueryDslQueryBase {
+public class UserDslRepository extends QueryDslQueryBase {
 
-    public UserDslRepository(EntityManager entityManager, CriteriaBuilderFactory criteriaBuilderFactory) {
-        super(entityManager, criteriaBuilderFactory);
+    public UserDslRepository(EntityManager entityManager) {
+        super(entityManager);
     }
 
     public Page<User> findAllUser(Pageable pageable) {
-
-        var query = this.queryFactory.selectFrom(user)
-                .select(user);
-
-        OrderSpecifier<?>[] orderSpecifiers = new OrderSpecifier[]
-                {
-                        new OrderSpecifier<>(
-                                Order.DESC, user.createdTime, OrderSpecifier.NullHandling.NullsLast)
-                };
-
-        return this.fetchPage(query, pageable, orderSpecifiers);
-    }
-
-    public Page<User> findAllUser2(Pageable pageable) {
 
         var query = this.queryFactory.selectFrom(user)
                 .select(user);
@@ -52,7 +37,7 @@ public class UserDslRepository extends BlazeQueryDslQueryBase {
                         new OrderSpecifier<>(Order.ASC, user.id)
                 };
 
-        return this.fetchPage1(query, pageable, orderSpecifiers);
+        return this.fetchPage(query, pageable, orderSpecifiers);
     }
 
     public Page<UserPojo> pageUserPojos(Pageable pageable) {
