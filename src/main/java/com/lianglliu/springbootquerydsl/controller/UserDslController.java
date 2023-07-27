@@ -32,11 +32,11 @@ public class UserDslController {
     }
 
     @GetMapping("/roles")
-    public List<User> findUserByRole(
+    public List<User> findUserByRoleAndUsername(
             @RequestParam(name = "role") String role,
             @RequestParam(name = "username", required = false) String username
     ) {
-        return userService.findUserByRole(role, username);
+        return userService.findUserByRoleAndUsername(role, username);
     }
 
 }
