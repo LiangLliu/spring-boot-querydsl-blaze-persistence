@@ -32,7 +32,7 @@ public class UserDslService {
         return userDslRepository.pageUserPojos(pageable);
     }
 
-    public List<User> findUserByRole(String role, String username) {
+    public List<User> findUserByRoleAndUsername(String role, String username) {
         Predicate predicate = QRole.role.name.contains(role);
         if (!ObjectUtils.isEmpty(username)) {
             predicate = new BooleanBuilder(predicate)
